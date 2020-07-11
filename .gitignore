@@ -109,5 +109,5 @@ keys.json
 
 # Jetbrains cache folders
 
-#.idea
-#.idea/
+.idea
+.idea/
