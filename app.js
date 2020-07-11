@@ -3,6 +3,15 @@ const express = require('express');
 const httpErrors = require('http-errors');
 const logger = require('morgan');
 const path = require('path');
+require("dotenv").config()
+
+const key = require(process.env.FIREBASE_CREDENTIALS_FILE)
+const admin = require("firebase-admin")
+
+admin.initializeApp({
+  credential: admin.credential.cert(key),
+  databaseURL: "https://node-twitter-clone.firebaseio.com"
+})
 
 const indexRouter = require('./routes/index');
 
