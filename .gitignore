@@ -106,3 +106,8 @@ dist
 
 #credentials
 keys.json
+
+# Jetbrains cache folders
+
+#.idea
+#.idea/
