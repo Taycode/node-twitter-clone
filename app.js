@@ -14,6 +14,7 @@ admin.initializeApp({
 })
 
 const indexRouter = require('./routes/index');
+const authRouter = require('./routes/authRouter')
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/auth', authRouter)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

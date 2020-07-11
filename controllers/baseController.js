@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 require("dotenv").config()
 const admin = require("firebase-admin");
-const fs = require('fs');
 
 
 let jwtSecret = process.env.JWT_SECRET;
@@ -84,7 +83,6 @@ class BaseController {
 
         return objectInstance
     }
-
     generateToken(userObject) {
         return jwt.sign(userObject, jwtSecret);
     }
@@ -110,6 +108,17 @@ class BaseController {
             .catch((err)=> {
                 throw new Error(err)
             })
+    }
+
+    checkIfAllDataFilled(data){
+        let err = []
+        Object.keys(data).forEach(key=>{
+            if (!data[key]){
+                err.push(`${key} is required`)
+            }
+        })
+
+        return err
     }
 
     verifyToken(token) {
