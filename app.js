@@ -6,15 +6,17 @@ const path = require('path');
 require("dotenv").config()
 
 const key = require(process.env.FIREBASE_CREDENTIALS_FILE)
-const admin = require("firebase-admin")
+const admin = require("firebase-admin");
 
 admin.initializeApp({
   credential: admin.credential.cert(key),
   databaseURL: "https://node-twitter-clone.firebaseio.com"
-})
+});
+
 
 const indexRouter = require('./routes/index');
-const authRouter = require('./routes/authRouter')
+const authRouter = require('./routes/authRouter');
+const tweetRouter = require("./routes/tweetRouter");
 
 const app = express();
 
@@ -26,7 +28,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/auth', authRouter)
+app.use('/auth', authRouter);
+app.use('/tweet', tweetRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
